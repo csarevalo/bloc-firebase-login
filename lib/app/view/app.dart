@@ -1,7 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc_firebase_login/bloc/app_bloc.dart';
-import 'package:bloc_firebase_login/counter/counter.dart';
 import 'package:bloc_firebase_login/l10n/l10n.dart';
+import 'package:bloc_firebase_login/login/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,7 +45,7 @@ class AppView extends StatelessWidget {
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const CounterPage()
+        home: const LoginScreen()
         // TODO: home: FlowBuilder<AppStatus>
         // (
         //   state: context.select((AppBloc bloc) => bloc.state.status),

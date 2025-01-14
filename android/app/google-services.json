@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "95357842105",
+    "project_id": "bloc-firebase-login-ae3c3",
+    "storage_bucket": "bloc-firebase-login-ae3c3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95357842105:android:bb57e01a6db688d6826168",
+        "android_client_info": {
+          "package_name": "com.csarevalo.bloc_firebase_login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-wxM02HMUCqNVkzMR3q3n6fEpdnHbbs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

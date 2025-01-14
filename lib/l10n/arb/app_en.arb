@@ -3,5 +3,37 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "loginScreenTitle": "Login",
+    "@loginScreenTitle": {
+        "description": "Text shown in the AppBar of the Login Page"
+    },
+    "loginFormAuthErrorSnackbarText": "Authentication Failure",
+    "@loginFormAuthErrorSnackbarText": {
+        "description": "Text shown in the AppForm within a Snackbar of the Login Page, if no error message is passed to the Snackbar."
+    },
+    "loginFormLoginButtonText": "Login",
+    "@loginFormLoginButtonText": {
+        "description": "Text shown on the Login Button in the Login Form."
+    },
+    "loginFormGoogleLoginButtonText": "SIGN IN WITH GOOGLE",
+    "@loginFormGoogleLoginButtonText": {
+        "description": "Text shown on the Google Login Button in the Login Form."
+    },
+    "loginFormEmailInputLabel": "Email",
+    "@loginFormEmailInputLabel": {
+        "description": "Label Text shown on the Email Input Field in the Login Form."
+    },
+    "loginFormEmailInputErrorText": "Invalid Email",
+    "@loginFormEmailInputErrorText": {
+        "description": "Error Text shown on the Email Input Field in the Login Form."
+    },
+    "loginFormPasswordInputLabel": "Password",
+    "@loginFormPasswordInputLabel": {
+        "description": "Label Text shown on the Password Input Field in the Login Form."
+    },
+    "loginFormPasswordInputErrorText": "Invalid Password",
+    "@loginFormPasswordInputErrorText": {
+        "description": "Error Text shown on the Password Input Field in the Login Form."
     }
 }
