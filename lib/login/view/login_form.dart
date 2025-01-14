@@ -42,15 +42,11 @@ class LoginForm extends StatelessWidget {
             _PasswordInput(),
             const SizedBox(height: 8),
             LoginButton(
-              onPressed: () {
-                // TODO: add onPressed to LoginButton
-              },
+              onPressed: context.read<LoginCubit>().logInWithEmailAndPassword,
             ),
             const SizedBox(height: 8),
             GoogleLoginButton(
-              onPressed: () {
-                // TODO: add onPressed to GoogleLoginButton
-              },
+              onPressed: context.read<LoginCubit>().logInWithGoogle,
             ),
           ],
         ),
