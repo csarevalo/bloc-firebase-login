@@ -12,8 +12,8 @@ import 'package:stream_transform/stream_transform.dart' show RateLimit;
 part 'login_event.dart';
 part 'login_state.dart';
 
-const throttleDuration = Duration(milliseconds: 100);
-const debounceDuration = Duration(milliseconds: 200);
+const throttleDuration = Duration(milliseconds: 150);
+const debounceDuration = Duration(milliseconds: 250);
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this._authenticationRepository) : super(const LoginState()) {

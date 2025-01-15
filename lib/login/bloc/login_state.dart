@@ -18,10 +18,10 @@ final class LoginState extends Equatable {
   @override
   List<Object?> get props => [
         email,
-        errorMessage,
-        isValid,
         password,
         status,
+        isValid,
+        errorMessage,
       ];
 
   LoginState copyWith({

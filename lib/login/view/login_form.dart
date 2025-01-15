@@ -16,7 +16,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<LoginBloc, LoginState>(
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
         if (state.status.isFailure) {
@@ -73,7 +73,8 @@ class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GoogleLoginButton(
-      onPressed: context.read<LoginCubit>().logInWithGoogle,
+      onPressed: () =>
+          context.read<LoginBloc>().add(const LoginWithGoogleRequested()),
     );
   }
 }
@@ -84,11 +85,13 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isValid = context.select(
-      (LoginCubit cubit) => cubit.state.isValid,
+      (LoginBloc bloc) => bloc.state.isValid,
     );
     return LoginButton(
       onPressed: isValid
-          ? () => context.read<LoginCubit>().logInWithCredentials()
+          ? () => context
+              .read<LoginBloc>()
+              .add(const LoginWithCredentialsRequested())
           : null,
     );
   }
@@ -100,10 +103,11 @@ class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final displayError = context.select(
-      (LoginCubit cubit) => cubit.state.password.displayError,
+      (LoginBloc bloc) => bloc.state.password.displayError,
     );
     return PasswordInputField(
-      onChanged: context.read<LoginCubit>().passwordChange,
+      onChanged: (password) =>
+          context.read<LoginBloc>().add(LoginPasswordChanged(password)),
       showErrorText: displayError != null,
     );
   }
@@ -115,10 +119,11 @@ class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final displayError = context.select(
-      (LoginCubit cubit) => cubit.state.email.displayError,
+      (LoginBloc bloc) => bloc.state.email.displayError,
     );
     return EmailInputField(
-      onChanged: context.read<LoginCubit>().emailChange,
+      onChanged: (email) =>
+          context.read<LoginBloc>().add(LoginEmailChanged(email)),
       showErrorText: displayError != null,
     );
   }
