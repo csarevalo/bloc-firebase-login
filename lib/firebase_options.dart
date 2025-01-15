@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '95357842105',
     projectId: 'bloc-firebase-login-ae3c3',
     storageBucket: 'bloc-firebase-login-ae3c3.firebasestorage.app',
+    iosClientId: '95357842105-ske1vdsiflj5a6luqd5ph8734d35jnlc.apps.googleusercontent.com',
     iosBundleId: 'com.csarevalo.BlocFirebaseLogin',
   );
 
@@ -79,4 +80,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'bloc-firebase-login-ae3c3.firebasestorage.app',
     measurementId: 'G-BT85TMMGYF',
   );
+
 }

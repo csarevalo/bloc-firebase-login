@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:authentication_repository/src/models/models.dart';
 import 'package:cache/cache.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
+import 'package:flutter/foundation.dart' show debugPrint, kDebugMode, kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
@@ -63,8 +63,10 @@ class AuthenticationRepository {
         password: password,
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
+      if (kDebugMode) debugPrint(e.toString());
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint(e.toString());
       throw const SignUpWithEmailAndPasswordFailure();
     }
   }
@@ -89,11 +91,12 @@ class AuthenticationRepository {
           idToken: googleAuth.idToken,
         );
       }
-
       await _firebaseAuth.signInWithCredential(credential);
     } on firebase_auth.FirebaseAuthException catch (e) {
+      if (kDebugMode) debugPrint(e.toString());
       throw LogInWithGoogleFailure.fromCode(e.code);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint(e.toString());
       throw const LogInWithGoogleFailure();
     }
   }
@@ -111,9 +114,10 @@ class AuthenticationRepository {
         password: password,
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
-      debugPrint(e.toString());
+      if (kDebugMode) debugPrint(e.toString());
       throw LogInWithEmailAndPasswordFailure.fromCode(e.code);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint(e.toString());
       throw const LogInWithEmailAndPasswordFailure();
     }
   }
@@ -128,7 +132,8 @@ class AuthenticationRepository {
         _firebaseAuth.signOut(),
         _googleSignIn.signOut(),
       ]);
-    } catch (_) {
+    } catch (e) {
+      if (kDebugMode) debugPrint(e.toString());
       throw LogOutFailure();
     }
   }
@@ -270,7 +275,8 @@ class LogInWithGoogleFailure implements Exception {
           'The credential verification ID received is invalid.',
         );
       default:
-        return const LogInWithGoogleFailure();
+        // return const LogInWithGoogleFailure();
+        return LogInWithGoogleFailure(code);
     }
   }
 

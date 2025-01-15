@@ -35,5 +35,13 @@
     "loginFormPasswordInputErrorText": "Invalid Password",
     "@loginFormPasswordInputErrorText": {
         "description": "Error Text shown on the Password Input Field in the Login Form."
+    },
+    "signUpScreenTitle": "Sign Up",
+    "@signUpScreenTitle": {
+        "description": "Text shown in the AppBar of the Sign Up Page"
+    },
+    "signUpFormErrorSnackbarText": "Sign Up Failure",
+    "@signUpFormErrorSnackbarText": {
+        "description": "Text shown in the AppForm within a Snackbar of the Sign Up Page when app fails to sign up user."
     }
 }
