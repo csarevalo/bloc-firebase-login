@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:bloc_firebase_login/l10n/l10n.dart';
 import 'package:bloc_firebase_login/login/login.dart';
 import 'package:bloc_firebase_login/login/widgets/widgets.dart';
-import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
