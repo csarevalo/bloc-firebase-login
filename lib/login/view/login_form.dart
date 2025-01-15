@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc_firebase_login/l10n/l10n.dart';
 import 'package:bloc_firebase_login/login/login.dart';
 import 'package:bloc_firebase_login/login/widgets/widgets.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -55,8 +56,10 @@ class LoginForm extends StatelessWidget {
             const _PasswordInput(),
             const SizedBox(height: 8),
             const _LoginButton(),
-            const SizedBox(height: 8),
-            const _GoogleLoginButton(),
+            if (kIsWeb || Platform.isAndroid || Platform.isIOS) ...[
+              const SizedBox(height: 8),
+              const _GoogleLoginButton(),
+            ],
           ],
         ),
       ),
@@ -69,9 +72,6 @@ class _GoogleLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      return const SizedBox.shrink();
-    }
     return GoogleLoginButton(
       onPressed: context.read<LoginCubit>().logInWithGoogle,
     );
