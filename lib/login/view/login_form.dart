@@ -84,11 +84,11 @@ class _LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isValid = context.select(
-      (LoginBloc bloc) => bloc.state.isValid,
+    final isEnabled = context.select(
+      (LoginBloc bloc) => bloc.state.isValid || !bloc.state.enableValidation,
     );
     return LoginButton(
-      onPressed: isValid
+      onPressed: isEnabled
           ? () => context
               .read<LoginBloc>()
               .add(const LoginWithCredentialsRequested())
@@ -102,8 +102,10 @@ class _PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.select((LoginBloc bloc) => bloc.state.enableValidation);
     final displayError = context.select(
-      (LoginBloc bloc) => bloc.state.password.displayError,
+      (LoginBloc bloc) =>
+          bloc.state.enableValidation ? bloc.state.password.displayError : null,
     );
     return PasswordInputField(
       onChanged: (password) =>
@@ -118,8 +120,10 @@ class _EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.select((LoginBloc bloc) => bloc.state.enableValidation);
     final displayError = context.select(
-      (LoginBloc bloc) => bloc.state.email.displayError,
+      (LoginBloc bloc) =>
+          bloc.state.enableValidation ? bloc.state.email.displayError : null,
     );
     return EmailInputField(
       onChanged: (email) =>

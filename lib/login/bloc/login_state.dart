@@ -6,6 +6,7 @@ final class LoginState extends Equatable {
     this.password = const Password.pure(),
     this.status = FormzSubmissionStatus.initial,
     this.isValid = false,
+    this.enableValidation = false,
     this.errorMessage,
   });
 
@@ -13,6 +14,7 @@ final class LoginState extends Equatable {
   final Password password;
   final FormzSubmissionStatus status;
   final bool isValid;
+  final bool enableValidation;
   final String? errorMessage;
 
   @override
@@ -21,6 +23,7 @@ final class LoginState extends Equatable {
         password,
         status,
         isValid,
+        enableValidation,
         errorMessage,
       ];
 
@@ -29,6 +32,7 @@ final class LoginState extends Equatable {
     Password? password,
     FormzSubmissionStatus? status,
     bool? isValid,
+    bool? enableValidation,
     String? errorMessage,
   }) {
     return LoginState(
@@ -36,6 +40,7 @@ final class LoginState extends Equatable {
       password: password ?? this.password,
       status: status ?? this.status,
       isValid: isValid ?? this.isValid,
+      enableValidation: enableValidation ?? this.enableValidation,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }

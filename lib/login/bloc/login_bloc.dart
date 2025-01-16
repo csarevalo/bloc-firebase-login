@@ -42,12 +42,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) {
     final email = Email.dirty(event.email);
-    emit(
-      state.copyWith(
-        email: email,
-        isValid: Formz.validate([email, state.password]),
-      ),
-    );
+    if (state.enableValidation) {
+      emit(
+        state.copyWith(
+          email: email,
+          isValid: Formz.validate([email, state.password]),
+        ),
+      );
+    } else {
+      emit(state.copyWith(email: email));
+    }
   }
 
   void _onLoginPasswordChanged(
@@ -55,19 +59,43 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) {
     final password = Password.dirty(event.password);
-    emit(
-      state.copyWith(
-        password: password,
-        isValid: Formz.validate([state.email, password]),
-      ),
-    );
+    if (state.enableValidation) {
+      emit(
+        state.copyWith(
+          password: password,
+          isValid: Formz.validate([state.email, password]),
+        ),
+      );
+    } else {
+      emit(state.copyWith(password: password));
+    }
   }
 
   Future<void> _onLoginWithCredentialsRequested(
     LoginWithCredentialsRequested event,
     Emitter<LoginState> emit,
   ) async {
-    if (!state.isValid) return;
+    if (!state.enableValidation) {
+      emit(
+        state.copyWith(
+          status: FormzSubmissionStatus.initial,
+          enableValidation: true,
+          isValid: Formz.validate([state.email, state.password]),
+        ),
+      );
+    }
+
+    if (!state.isValid) {
+      emit(
+        state.copyWith(
+          status: FormzSubmissionStatus.failure,
+          enableValidation: true,
+          isValid: Formz.validate([state.email, state.password]),
+        ),
+      );
+      return;
+    }
+
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     try {
       await _authenticationRepository.logInWithEmailAndPassword(
@@ -76,6 +104,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
       emit(state.copyWith(status: FormzSubmissionStatus.success));
     } on LogInWithEmailAndPasswordFailure catch (e) {
+      //TODO: Handle special exceptions:
+      // user-token-expired,
+      // user-disabled, and
+      // operation-not-allowed.
       emit(
         state.copyWith(
           errorMessage: e.message,
@@ -96,6 +128,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await _authenticationRepository.logInWithGoogle();
       emit(state.copyWith(status: FormzSubmissionStatus.success));
     } on LogInWithGoogleFailure catch (e) {
+      //TODO: Handle special exceptions if needed.
       emit(
         state.copyWith(
           errorMessage: e.message,

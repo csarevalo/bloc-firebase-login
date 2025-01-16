@@ -219,6 +219,27 @@ class LogInWithEmailAndPasswordFailure implements Exception {
         return const LogInWithEmailAndPasswordFailure(
           'Incorrect password, please try again.',
         );
+      case 'too-many-requests':
+        return const LogInWithEmailAndPasswordFailure(
+          'Too many requests were detected, for your security please wait some time.',
+        );
+      case 'user-token-expired':
+        return const LogInWithEmailAndPasswordFailure(
+          'User has been signed out, please sign in.',
+        );
+      case 'network-request-failed':
+        return const LogInWithEmailAndPasswordFailure(
+          'Network error, please verify internet connection.',
+        );
+      case 'INVALID_LOGIN_CREDENTIALS':
+      case 'invalid-credential':
+        return const LogInWithEmailAndPasswordFailure(
+          'Invalid email and/or password, please try again.',
+        );
+      case 'operation-not-allowed':
+        return const LogInWithEmailAndPasswordFailure(
+          'Email/password accounts are not enabled, please contact support for help.',
+        );
       default:
         return const LogInWithEmailAndPasswordFailure();
     }
@@ -241,6 +262,7 @@ class LogInWithGoogleFailure implements Exception {
   /// Create an authentication message
   /// from a firebase authentication exception code.
   factory LogInWithGoogleFailure.fromCode(String code) {
+    //TODO: include all LogInWithGoogleFailure exceptions in .fromCode
     switch (code) {
       case 'account-exists-with-different-credential':
         return const LogInWithGoogleFailure(
