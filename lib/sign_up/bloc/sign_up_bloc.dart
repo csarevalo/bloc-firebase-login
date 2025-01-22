@@ -1,18 +1,28 @@
+import 'dart:async';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
+part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
-class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit(this._authenticationRepository) : super(const SignUpState());
+class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
+  SignUpBloc(this._authenticationRepository) : super(const SignUpState()) {
+    on<SignUpEmailChanged>(_onSignUpEmailChanged);
+    on<SignUpPasswordChanged>(_onSignUpPasswordChanged);
+    on<SignUpConfirmedPasswordChanged>(_onSignUpConfirmedPasswordChanged);
+    on<SignUpFormSubmitted>(_onSignUpFormSubmitted);
+  }
 
   final AuthenticationRepository _authenticationRepository;
 
-  void emailChanged(String value) {
-    final email = Email.dirty(value);
+  void _onSignUpEmailChanged(
+    SignUpEmailChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    final email = Email.dirty(event.email);
     emit(
       state.copyWith(
         email: email,
@@ -25,29 +35,30 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
-  void passwordChanged(String value) {
-    final password = Password.dirty(value);
-    final confirmedPassword = ConfirmedPassword.dirty(
-      password: password.value,
-      value: state.confirmedPassword.value,
-    );
+  void _onSignUpPasswordChanged(
+    SignUpPasswordChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    final password = Password.dirty(event.password);
     emit(
       state.copyWith(
         password: password,
-        confirmedPassword: confirmedPassword,
         isValid: Formz.validate([
           state.email,
           password,
-          confirmedPassword,
+          state.confirmedPassword,
         ]),
       ),
     );
   }
 
-  void confirmedPasswordChanged(String value) {
+  void _onSignUpConfirmedPasswordChanged(
+    SignUpConfirmedPasswordChanged event,
+    Emitter<SignUpState> emit,
+  ) {
     final confirmedPassword = ConfirmedPassword.dirty(
       password: state.password.value,
-      value: value,
+      value: event.password,
     );
     emit(
       state.copyWith(
@@ -61,7 +72,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
-  Future<void> signUpFormSubmitted() async {
+  Future<void> _onSignUpFormSubmitted(
+    SignUpFormSubmitted event,
+    Emitter<SignUpState> emit,
+  ) async {
     if (!state.isValid) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     try {
@@ -71,6 +85,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       );
       emit(state.copyWith(status: FormzSubmissionStatus.success));
     } on SignUpWithEmailAndPasswordFailure catch (e) {
+      //TODO: Handle special exceptions:
       emit(
         state.copyWith(
           errorMessage: e.message,

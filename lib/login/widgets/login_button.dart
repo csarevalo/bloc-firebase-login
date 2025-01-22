@@ -13,7 +13,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return TextButton(
-      key: const Key('loginForm_login_button'),
+      key: const Key('login_button'),
       onPressed: onPressed,
       child: Text(
         l10n.loginFormLoginButtonText,

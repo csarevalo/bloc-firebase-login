@@ -1,4 +1,4 @@
-part of 'sign_up_cubit.dart';
+part of 'sign_up_bloc.dart';
 
 final class SignUpState extends Equatable {
   const SignUpState({

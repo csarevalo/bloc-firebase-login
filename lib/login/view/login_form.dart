@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc_firebase_login/l10n/l10n.dart';
 import 'package:bloc_firebase_login/login/login.dart';
 import 'package:bloc_firebase_login/login/widgets/widgets.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,7 +88,10 @@ class _LoginButton extends StatelessWidget {
     final isEnabled = context.select(
       (LoginBloc bloc) => bloc.state.isValid || !bloc.state.enableValidation,
     );
-    return LoginButton(
+
+    final labelText = context.l10n.loginFormLoginButtonText;
+    return FilledTextButton(
+      labelText: labelText,
       onPressed: isEnabled
           ? () => context
               .read<LoginBloc>()
@@ -107,9 +111,14 @@ class _PasswordInput extends StatelessWidget {
       (LoginBloc bloc) =>
           bloc.state.enableValidation ? bloc.state.password.displayError : null,
     );
+
+    final l10n = context.l10n;
     return PasswordInputField(
       onChanged: (password) =>
           context.read<LoginBloc>().add(LoginPasswordChanged(password)),
+      labelText: l10n.loginFormPasswordInputLabel,
+      hintText: '',
+      errorText: l10n.loginFormPasswordInputErrorText,
       showErrorText: displayError != null,
     );
   }
@@ -125,9 +134,14 @@ class _EmailInput extends StatelessWidget {
       (LoginBloc bloc) =>
           bloc.state.enableValidation ? bloc.state.email.displayError : null,
     );
+
+    final l10n = context.l10n;
     return EmailInputField(
       onChanged: (email) =>
           context.read<LoginBloc>().add(LoginEmailChanged(email)),
+      labelText: l10n.loginFormEmailInputLabel,
+      hintText: '',
+      errorText: l10n.loginFormEmailInputErrorText,
       showErrorText: displayError != null,
     );
   }

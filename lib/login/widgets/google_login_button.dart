@@ -14,7 +14,7 @@ class GoogleLoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return ElevatedButton.icon(
-      key: const Key('loginForm_googleLogin_button'),
+      key: const Key('googleLogin_button'),
       onPressed: onPressed,
       icon: const Icon(FontAwesomeIcons.google, color: Colors.white),
       label: Text(l10n.loginFormGoogleLoginButtonText),

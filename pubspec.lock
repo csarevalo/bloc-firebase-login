@@ -140,6 +140,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
+  custom_widgets:
+    dependency: "direct main"
+    description:
+      path: "packages/custom_widgets"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   diff_match_patch:
     dependency: transitive
     description:

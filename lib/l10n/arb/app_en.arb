@@ -43,5 +43,33 @@
     "signUpFormErrorSnackbarText": "Sign Up Failure",
     "@signUpFormErrorSnackbarText": {
         "description": "Text shown in the AppForm within a Snackbar of the Sign Up Page when app fails to sign up user."
+    },
+    "signUpFormSignUpButtonText": "SignUp",
+    "@signUpFormSignUpButtonText": {
+        "description": "Text shown on the Sign Up Button in the Sign Up Form."
+    },
+    "signUpFormEmailInputLabel": "Email",
+    "@signUpFormEmailInputLabel": {
+        "description": "Label Text shown on the Email Input Field in the Sign Up Form."
+    },
+    "signUpFormEmailInputErrorText": "Invalid Email",
+    "@signUpFormEmailInputErrorText": {
+        "description": "Error Text shown on the Email Input Field in the Sign Up Form."
+    },
+    "signUpFormPasswordInputLabel": "Password",
+    "@signUpFormPasswordInputLabel": {
+        "description": "Label Text shown on the Password Input Field in the Sign Up Form."
+    },
+    "signUpFormPasswordInputErrorText": "Invalid Password",
+    "@signUpFormPasswordInputErrorText": {
+        "description": "Error Text shown on the Password Input Field in the Sign Up Form."
+    },
+    "signUpFormConfirmedPasswordInputLabel": "Confirm Password",
+    "@signUpFormConfirmedPasswordInputLabel": {
+        "description": "Label Text shown on the Confirmed Password Input Field in the Sign Up Form."
+    },
+    "signUpFormConfirmedPasswordInputErrorText": "Password does not match",
+    "@signUpFormConfirmedPasswordInputErrorText": {
+        "description": "Error Text shown on the Password Input Field in the Sign Up Form."
     }
 }
