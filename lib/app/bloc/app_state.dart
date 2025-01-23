@@ -1,12 +1,12 @@
 part of 'app_bloc.dart';
 
-enum AppStatus { authenticated, unathenticated }
+enum AppStatus { authenticated, unauthenticated }
 
 final class AppState extends Equatable {
   const AppState({User user = User.empty})
       : this._(
           status: user == User.empty
-              ? AppStatus.unathenticated
+              ? AppStatus.unauthenticated
               : AppStatus.authenticated,
           user: user,
         );

@@ -1,11 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:bloc_firebase_login/app/bloc/app_bloc.dart';
+import 'package:bloc_firebase_login/app/app.dart';
 import 'package:bloc_firebase_login/l10n/l10n.dart';
-import 'package:bloc_firebase_login/login/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// import 'package:flow_builder/flow_builder.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -38,32 +35,19 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData.dark(useMaterial3: true).copyWith(
-          appBarTheme: AppBarTheme(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          ),
+      theme: ThemeData.dark(useMaterial3: true).copyWith(
+        appBarTheme: AppBarTheme(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        home: const LoginScreen()
-        // TODO: home: FlowBuilder<AppStatus>
-        // (
-        //   state: context.select((AppBloc bloc) => bloc.state.status),
-        //   onGeneratePages: onGenerateAppViewPages,
-        // ),
-        );
+      ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      // home: FlowBuilder<AppStatus>(
+      //   state: context.select((AppBloc bloc) => bloc.state.status),
+      //   onGeneratePages: onGenerateAppViewPages,
+      // ),
+      home: generateHomeScreen,
+      onGenerateRoute: onGenerateRoute,
+    );
   }
-
-  // TODO: List<Page<dynamic>> onGenerateAppViewPages
-  // (
-  //   AppStatus state,
-  //   List<Page<dynamic>> pages,
-  // ) {
-  //   switch (state) {
-  //     case AppStatus.authenticate:
-  //       break;
-  //     case AppStatus.unathenticated:
-  //       break;
-  //   }
-  // }
 }

@@ -1,11 +1,19 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_firebase_login/app/app.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
+
+  @override
+  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+    super.onEvent(bloc, event);
+    log('onEvent(${bloc.runtimeType}, $event)');
+  }
 
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
@@ -18,16 +26,26 @@ class AppBlocObserver extends BlocObserver {
     log('onError(${bloc.runtimeType}, $error, $stackTrace)');
     super.onError(bloc, error, stackTrace);
   }
+
+  @override
+  void onTransition(
+    Bloc<dynamic, dynamic> bloc,
+    Transition<dynamic, dynamic> transition,
+  ) {
+    super.onTransition(bloc, transition);
+    log('onTransition(${bloc.runtimeType}, $transition)');
+  }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+void bootstrap(App Function() builder) {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  Bloc.observer = const AppBlocObserver();
-
   // Add cross-flavor configuration here
-
-  runApp(await builder());
+  if (kDebugMode) {
+    log('app-flavor: ${appFlavor ?? 'none'}');
+    Bloc.observer = const AppBlocObserver();
+  }
+  runApp(builder());
 }

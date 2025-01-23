@@ -5,10 +5,10 @@ import 'package:bloc_firebase_login/sign_up/view/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
-  static const String routeName = '/signUp';
+  static const String route = 'signup';
 
   @override
   Widget build(BuildContext context) {

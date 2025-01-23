@@ -14,5 +14,9 @@ void main() async {
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;
 
-  runApp(App(authenticationRepository: authenticationRepository));
+  bootstrap(
+    () => App(
+      authenticationRepository: authenticationRepository,
+    ),
+  );
 }

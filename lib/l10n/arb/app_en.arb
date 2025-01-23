@@ -71,5 +71,9 @@
     "signUpFormConfirmedPasswordInputErrorText": "Password does not match",
     "@signUpFormConfirmedPasswordInputErrorText": {
         "description": "Error Text shown on the Password Input Field in the Sign Up Form."
+    },
+    "homeScreenTitle": "Home",
+    "@homeScreenTitle": {
+        "description": "Text shown in the AppBar of the Home Page"
     }
 }

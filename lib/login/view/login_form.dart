@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:bloc_firebase_login/l10n/l10n.dart';
-import 'package:bloc_firebase_login/login/login.dart';
+import 'package:bloc_firebase_login/login/bloc/login_bloc.dart';
 import 'package:bloc_firebase_login/login/widgets/widgets.dart';
+import 'package:bloc_firebase_login/sign_up/view/sign_up_screen.dart';
 import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -61,6 +62,18 @@ class LoginForm extends StatelessWidget {
               const SizedBox(height: 8),
               const _GoogleLoginButton(),
             ],
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Don't have an account?"),
+                SimpleTextButton(
+                  labelText: 'Sign Up',
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed(SignUpScreen.route),
+                ),
+              ],
+            )
           ],
         ),
       ),
