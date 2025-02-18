@@ -15,7 +15,7 @@ dependencies:
     path: packages/custom_widgets
   equatable: ^2.0.7
   firebase_auth_platform_interface: ^7.5.0
-  firebase_core: ^3.10.0
+  firebase_core: ^3.12.0
   flow_builder: ^0.1.0
   flutter:
     sdk: flutter
