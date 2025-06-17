@@ -31,7 +31,7 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    # needs: build
     steps:
       - uses: actions/checkout@v2
       - name: Set up outdated Flutter
