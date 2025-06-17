@@ -39,7 +39,7 @@ jobs:
         with:
           channel: stable
           flutter-version: '3.29.3'
-      # - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           customArgs: --target='lib/main_development.dart'
