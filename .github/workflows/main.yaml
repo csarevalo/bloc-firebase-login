@@ -20,6 +20,7 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       flutter_channel: stable
+      flutter_version: "3.24.5"
 
   spell-check:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
@@ -38,7 +39,7 @@ jobs:
         with:
           channel: stable
           flutter-version: '3.24.5'
-      - uses: subosito/flutter-action@v1
+      # - uses: subosito/flutter-action@v1
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           customArgs: --target='lib/main_development.dart'
